@@ -1,0 +1,81 @@
+.signup {
+    padding: 20px;
+}
+.signup-form {
+    font-size: large;
+}
+.signup-form-item {
+    margin-bottom: 10px;
+}
+.signup-form-item > label {
+    display: flex;
+    width: 200px;
+}
+.signup-form-item > input {
+    padding: 10px;
+    width: 30%;
+}
+.signup-form-item > button {
+    margin-left: 10px;
+    padding: 10px;
+}
+.signup-form-submit-btn {
+    padding: 10px;
+    width: 200px;
+    color: white;
+    font-size: large;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+}
+.signIn {
+    font-size: large;
+}
+.signIn-logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.signIn-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+.signIn-item label {
+    justify-items: center;
+    flex-basis: 100px;
+    text-align: left;
+}
+.signIn-item input {
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.signIn-bottom {
+    display: flex;
+    font-size: medium;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.signIn-bottom > div {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.signIn-btn {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    font-size: medium;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+.signIn-btn:hover {
+    background-color: rgb(33, 33, 33);
+}

@@ -1,0 +1,8 @@
+.footer {
+    padding: 10px;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+}
