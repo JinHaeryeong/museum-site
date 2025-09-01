@@ -5,6 +5,7 @@ import { ResizeObserver } from "@juggle/resize-observer";
 
 const carouselImgName = "carousel_img";
 const exhibitionImgName = "exhibition_img";
+const carouselImgs = [`${carouselImgName}1`, `${carouselImgName}2`, `${carouselImgName}3`, `${carouselImgName}4`];
 export default function HomeContent() {
     // carousel 관련
     const [counter, setCounter] = useState(0);
@@ -73,15 +74,13 @@ export default function HomeContent() {
                     onMouseEnter={stopAutoSlide}
                     onMouseLeave={startAutoSlide}
                 >
-                    {Array(4)
-                        .fill(0)
-                        .map((_, index) => (
-                            <img
-                                src={`/images/${carouselImgName + (index + 1)}.jpg`}
-                                alt={`${carouselImgName + (index + 1)}`}
-                                ref={(el) => (imageRefs.current[index] = el)}
-                            />
-                        ))}
+                    {carouselImgs.map((image, index) => (
+                        <img
+                            src={`/images/${image}.jpg`}
+                            alt={`${carouselImgName + (index + 1)}`}
+                            ref={(el) => (imageRefs.current[index] = el)}
+                        />
+                    ))}
                 </div>
                 <div className='carousel-button prev' onClick={handleCarouselPrev}>
                     <ArrowLeftCircleIcon size={42} />
@@ -91,6 +90,11 @@ export default function HomeContent() {
                 </div>
                 <div className='carousel-button stop' onClick={stopAutoSlide}>
                     <Pause />
+                </div>
+                <div className='carousel-nav'>
+                    {carouselImgs.map((_, index) => (
+                        <div></div>
+                    ))}
                 </div>
             </div>
             <div className='main-info'>

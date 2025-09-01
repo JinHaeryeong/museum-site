@@ -6,11 +6,6 @@ export default function AboutInfo() {
             maxWidth: '1200px',
             margin: '40px auto',
             padding: '40px',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            fontFamily: "'Noto Sans KR', sans-serif",
         },
         header: {
             fontSize: '24px',
@@ -59,7 +54,7 @@ export default function AboutInfo() {
             </div>
 
             <div style={styles.layout}>
-                <img src="../src/assets/images/aboutinfo_director.jpg" alt="국립중앙박물관장" style={styles.image} />
+                <img src="../public/images/aboutinfo_director.jpg" alt="국립중앙박물관장" style={styles.image} />
 
                 <div style={styles.text}>
                     <div style={styles.title}>안녕하십니까? 국립중앙박물관장 유홍준입니다.</div>

@@ -20,7 +20,8 @@
     height: 100%;
     object-fit: cover;
 }
-.carousel-button {
+.carousel-button,
+.carousel-nav {
     position: absolute;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0);
@@ -47,6 +48,17 @@
 .carousel-button.next {
     top: 50%;
     right: 10px;
+}
+.carousel-nav {
+    left: 49%;
+    bottom: -0.8em;
+}
+.carousel-nav div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 5px;
 }
 .main-info {
     display: flex;
