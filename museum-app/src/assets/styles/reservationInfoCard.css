@@ -5,8 +5,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-family: 'Noto Sans KR', sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     line-height: 1.6;
     color: #333;
 }
@@ -30,5 +29,5 @@
 }
 
 .reservation-content {
-    font-size: 25px;
+    font-size: 30px;
 }
