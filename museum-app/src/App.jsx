@@ -1,17 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Reservation from './pages/Reservation';
+import ReservationPage from './pages/ReservationPage';
 import MainPage from './pages/mainpage';
+import AboutInfo from './components/AboutInfo';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage/>} />
-        <Route path="/reserve" element={<Reservation />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/reserve" element={<ReservationPage />} />
+                <Route path="/aboutInfo" element={<AboutInfo />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
