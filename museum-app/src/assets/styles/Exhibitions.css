@@ -1,0 +1,20 @@
+.exhibition-center-item {
+    display: flex;
+}
+.exhibition-center-badge {
+    padding: 5px 15px;
+    background-color: rgb(160, 149, 184);
+    font-weight: 500;
+    margin-right: 5px;
+}
+.exhibition-item-btn {
+    padding: 10px;
+    border: none;
+    font-size: large;
+    background-color: rgb(6, 6, 6);
+    color: white;
+    border-radius: 5px;
+}
+.exhibition-bottom-title {
+    font-size: larger;
+}
