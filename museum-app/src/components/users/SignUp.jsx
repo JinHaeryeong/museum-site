@@ -19,30 +19,30 @@ export default function SignUp() {
             <form className='signup-form'>
                 <div className='signup-form-item'>
                     <label htmlFor='name'>이름</label>
-                    <input type='text' name='name' placeholder='이름을 입력해주세요' />
+                    <input type='text' name='name' id='name' placeholder='이름을 입력해주세요' />
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='id'>아이디</label>
-                    <input type='text' name='id' placeholder='아이디를 입력해주세요' />
+                    <input type='text' name='id' id='id' placeholder='아이디를 입력해주세요' />
                     <button>중복 확인</button>
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='pwd'>비밀번호</label>
-                    <input type='pwd' name='pwd' placeholder='비밀번호를 입력해주세요' />
+                    <input type='pwd' name='pwd' id='pwd' placeholder='비밀번호를 입력해주세요' />
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='pwdCheck'>비밀번호 확인</label>
-                    <input type='pwd' name='pwdCheck' placeholder='입력한 비밀번호를 다시 입력해주세요' />
+                    <input type='pwd' name='pwdCheck' id='pwdCheck' placeholder='입력한 비밀번호를 다시 입력해주세요' />
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='tel'>전화번호</label>
-                    <input type='tel' name='tel' placeholder='전화번호를 입력해주세요' />
+                    <input type='tel' name='tel' id='tel' placeholder='전화번호를 입력해주세요' />
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='email'>이메일</label>
-                    <input type='email' name='email' placeholder='이메일을 입력해주세요' />
+                    <input type='email' name='email' id='tel' placeholder='이메일을 입력해주세요' />
                 </div>
-                <button className='signup-form-submit-btn'>가입</button>
+                <button className='signup-form-submit-btn'>가입하기</button>
             </form>
         </div>
     );
