@@ -100,8 +100,14 @@
 
 .main-info-right-item {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
+.main-info-right-item hr {
+    width: 100%;
+    margin: 0 auto;
+}
 .main-info-right-item::after {
     content: "";
     position: absolute;

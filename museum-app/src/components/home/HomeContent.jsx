@@ -121,8 +121,14 @@ export default function HomeContent() {
                     <hr size='5' color='black' />
                 </div>
                 <div className='main-info-right'>
-                    <div className='main-info-right-item'>오시는길</div>
-                    <div className='main-info-right-item'>예약하기</div>
+                    <div className='main-info-right-item'>
+                        <div>오시는길</div>
+                        <hr size='5' color='black' />
+                    </div>
+                    <div className='main-info-right-item'>
+                        <div>예약하기</div>
+                        <hr size='5' color='black' />
+                    </div>
                 </div>
             </div>
             <div className='main-exhibition'>
