@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+<<<<<<< HEAD
 3;
 import './assets/styles/global.css';
 import { useState } from 'react';
@@ -37,6 +38,21 @@ function App() {
                 <Footer />
             </div>
         </div>
+=======
+import ReservationPage from './pages/ReservationPage';
+import MainPage from './pages/mainpage';
+import AboutInfo from './components/AboutInfo';
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/reserve" element={<ReservationPage />} />
+                <Route path="/aboutInfo" element={<AboutInfo />} />
+            </Routes>
+        </BrowserRouter>
+>>>>>>> 2ec2677f8d753734095402b1c69658c46ee0d555
     );
 }
 
