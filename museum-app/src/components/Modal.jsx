@@ -1,4 +1,3 @@
-import React from "react";
 
 /* 
 TS가 아니라 interface를 못씀

@@ -1,4 +1,4 @@
-import "../assets/css/Footer.css";
+import "../assets/styles/Footer.css";
 const logos = ["naver_logo.svg", "twitter_logo.svg", "facebook_logo.svg", "instagram_logo.svg", "youtube_logo.svg"];
 const snsLinks = [
     "https://blog.naver.com/100museum",

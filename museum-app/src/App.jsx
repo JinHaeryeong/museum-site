@@ -1,10 +1,9 @@
-import "./assets/css/global.css";
+import "./assets/styles/global.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import SignUp from "./components/users/SignUp";
-import SignIn from "./components/users/SignIn";
 import Exhibitions from "./pages/Exhibitions";
 import Info from "./pages/Info";
 import About from "./pages/About";

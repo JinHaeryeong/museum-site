@@ -1,5 +1,5 @@
 import { Form } from "react-router-dom";
-import "../../assets/css/Sign.css";
+import "../../assets/styles/Sign.css";
 import { useState } from "react";
 export default function SignUp() {
     const [signUpInput, setSignUpInput] = useState({
