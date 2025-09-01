@@ -41,6 +41,7 @@
     align-items: center;
     width: 100%;
     margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 .signIn-item label {
     justify-items: center;
@@ -73,6 +74,7 @@
     border-radius: 5px;
     background-color: black;
     color: white;
+
     font-weight: 500;
     cursor: pointer;
 }

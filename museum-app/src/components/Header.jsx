@@ -1,4 +1,4 @@
-import "../assets/styles/Header.css";
+import "../assets/styles/header.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";

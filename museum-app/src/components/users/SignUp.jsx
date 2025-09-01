@@ -1,5 +1,4 @@
-import { Form } from "react-router-dom";
-import "../../assets/styles/Sign.css";
+import "../../assets/styles/sign.css";
 import { useState } from "react";
 export default function SignUp() {
     const [signUpInput, setSignUpInput] = useState({
@@ -14,6 +13,7 @@ export default function SignUp() {
         <div className='signup'>
             <div className='signup-top'>
                 <h1>회원가입</h1>
+                <img src='/images/logo.png' alt='로고' />
                 <div>중앙 박물관의 회원이 되시면 전시를 쉽게 예약할 수 있습니다</div>
             </div>
             <form className='signup-form'>
@@ -24,7 +24,7 @@ export default function SignUp() {
                 <div className='signup-form-item'>
                     <label htmlFor='id'>아이디</label>
                     <input type='text' name='id' id='id' placeholder='아이디를 입력해주세요' />
-                    <button>중복 확인</button>
+                    <button className='signup-form-'>중복 확인</button>
                 </div>
                 <div className='signup-form-item'>
                     <label htmlFor='pwd'>비밀번호</label>

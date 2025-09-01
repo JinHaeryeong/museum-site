@@ -1,0 +1,15 @@
+.reservation-page {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.reservation-left,
+.reservation-right {
+    border-radius: 12px;
+    padding: 16px;
+}

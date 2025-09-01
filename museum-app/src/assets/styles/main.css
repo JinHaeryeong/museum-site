@@ -1,0 +1,160 @@
+.carousel {
+    width: 100%;
+    max-width: 1440px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 10px 10px 30px grey;
+    margin-bottom: 2rem;
+}
+
+.carousel-slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+}
+
+.carousel-slides > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel-button {
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button.stop {
+    bottom: 0;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.carousel-button.prev {
+    top: 50%;
+    left: 10px;
+}
+.carousel-button.next {
+    top: 50%;
+    right: 10px;
+}
+.main-info {
+    display: flex;
+}
+.main-info-left {
+    width: 80%;
+    margin-right: 15px;
+    box-sizing: border-box;
+}
+.main-info-first-icon {
+    margin-right: 10px;
+}
+.main-info-right {
+    width: 20%;
+    display: flex;
+    font-size: xx-large;
+    font-weight: 600;
+    box-sizing: border-box;
+    align-items: end;
+}
+.main-info-right > div {
+    margin-right: 5px;
+    width: 50%;
+    cursor: pointer;
+    text-align: center;
+    padding: 15px;
+}
+.main-info-content {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 1em;
+    padding-left: 0;
+}
+.main-info-content > li {
+    margin-right: 1em;
+}
+
+.main-info-think,
+.main-info-light {
+    font-size: large;
+}
+.main-info-first {
+    font-weight: 600;
+    display: flex;
+    font-size: x-large;
+}
+.main-info-think {
+    font-weight: 600;
+}
+
+.main-info-right-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-info-right-item hr {
+    width: 100%;
+    margin: 0 auto;
+}
+.main-info-right-item::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(255, 223, 175), rgb(200, 200, 200), rgb(142, 146, 219));
+    border-top-right-radius: 30%;
+    border-top-left-radius: 30%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.main-info-right-item:hover::after {
+    opacity: 1;
+}
+
+.main-exhibition-list {
+    text-align: center;
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    justify-content: space-around;
+}
+
+.main-exhibition-item-img-container {
+    position: relative;
+}
+.main-exhibition-item-img-container::after {
+    content: "국립중앙박물관";
+    color: white;
+    font-size: large;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.main-exhibition-item-img-container:hover::after {
+    opacity: 1;
+}

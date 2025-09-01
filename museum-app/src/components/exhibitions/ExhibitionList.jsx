@@ -1,11 +1,7 @@
+import { Link } from "react-router-dom";
 import "../../assets/styles/Exhibitions.css";
-const imgName = "exhibition";
-const exhibitionsImg = [
-    `${imgName}_museumforyou.png`,
-    `${imgName}_manamoana.jpg`,
-    `${imgName}_whiteporcelain.jpg`,
-    `${imgName}_theradiantstrides.jpg`,
-];
+const imgName = "exhibition_img";
+
 const exhibitionsBottom = [
     {
         title: "국보순회전, 모두가 함께하는 180일의 여정",
@@ -31,24 +27,30 @@ const exhibitionsBottom = [
 export default function ExhibitionList() {
     return (
         <div className='exhibitions'>
-            <div>확인용</div>
-            {exhibitionsImg.map((img, index) => (
-                <div key={index} className='exhibition-item'>
-                    <img src={`/images/${img}`} alt={`${img}`} />
-                    <div className='exhibition-center-item'>
-                        <div className='exhibition-center-badge'>특별전시</div>
-                        <div className='exhibition-center-badge'>테마전</div>
-                    </div>
-                    <div className='exhibition-bottom-item'>
-                        <div>
-                            <div className='exhibition-bottom-title'>{exhibitionsBottom[index].title}</div>
-                            <div className='exhibition-bottom-period'>{exhibitionsBottom[index].period}</div>
-                            <div className='exhibition-bottom-location'>{exhibitionsBottom[index].location}</div>
+            {Array(4)
+                .fill(0)
+                .map((_, index) => (
+                    <div key={index} className='exhibition-item'>
+                        <img
+                            src={`/images/${imgName + (index + 1)}${index + 1 == 2 ? ".png" : ".jpg"}`}
+                            alt={`${imgName + (index + 1)}`}
+                        />
+                        <div className='exhibition-center-item'>
+                            <div className='exhibition-center-badge'>특별전시</div>
+                            <div className='exhibition-center-badge'>테마전</div>
                         </div>
-                        <button className='exhibition-item-btn'>예약하기</button>
+                        <div className='exhibition-bottom-item'>
+                            <div>
+                                <div className='exhibition-bottom-title'>{exhibitionsBottom[index].title}</div>
+                                <div className='exhibition-bottom-period'>{exhibitionsBottom[index].period}</div>
+                                <div className='exhibition-bottom-location'>{exhibitionsBottom[index].location}</div>
+                            </div>
+                            <Link to='/reserve'>
+                                <button className='exhibition-item-btn'>예약하기</button>
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
         </div>
     );
 }

@@ -1,8 +1,13 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./assets/styles/global.css";
-import { ArrowBigDown, Camera } from "lucide-react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import SignUp from "./components/users/SignUp";
+import Exhibitions from "./pages/Exhibitions";
+import Info from "./pages/Info";
+import About from "./pages/About";
+import ReservationPage from "./pages/ReservationPage";
 
 function App() {
     return (
@@ -16,6 +21,7 @@ function App() {
                     <Route path='/info' element={<Info />} />
                     <Route path='/exhibitions' element={<Exhibitions />} />
                     <Route path='/about' element={<About />} />
+                    <Route path='/reserve' element={<ReservationPage />} />
                     <Route path='/signup' element={<SignUp />} />
                 </Routes>
             </BrowserRouter>
