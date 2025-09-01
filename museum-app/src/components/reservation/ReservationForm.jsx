@@ -1,7 +1,10 @@
 import { useState, useRef } from 'react';
-import '../assets/styles/reservationForm.css';
+import '../../assets/styles/reservationForm.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function ReservationForm() {
+export default function ReservationForm({ exhibitionTitle }) {
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -17,7 +20,7 @@ export default function ReservationForm() {
     const emailRef = useRef(null);
     const phoneRef = useRef(null);
 
-    const today = new Date().toISOString().split('T')[0]; // 이전 날짜 선택 방지
+    const today = new Date().toISOString().split('T')[0];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,13 +55,12 @@ export default function ReservationForm() {
         }
 
         alert(`예약이 완료되었습니다.
-      예약자 이름 : ${form.name}
-      이메일: ${form.email}
-      전화번호: ${phoneNumber}
-      날짜: ${form.date}
-      시간: ${form.time}
-      인원 수: ${form.guests} 명
-    `);
+            예약자 이름 : ${form.name}
+            이메일: ${form.email}
+            전화번호: ${phoneNumber}
+            날짜: ${form.date}
+            시간: ${form.time}
+            인원 수: ${form.guests} 명`);
 
         setForm({
             name: '',
@@ -69,6 +71,18 @@ export default function ReservationForm() {
             date: '',
             time: '10:00',
             guests: 1,
+        });
+
+        navigate('/ReservationCheck', {
+            state: {
+                title: exhibitionTitle,
+                name: form.name,
+                email: form.email,
+                phone: phoneNumber,
+                date: form.date,
+                time: form.time,
+                guests: form.guests,
+            },
         });
     };
 
@@ -81,7 +95,7 @@ export default function ReservationForm() {
             phone3: '',
             date: '',
             time: '10:00',
-            guests: '1',
+            guests: 1,
         });
     };
 
@@ -130,6 +144,7 @@ export default function ReservationForm() {
                         <option value="12:00">12:00</option>
                         <option value="14:00">14:00</option>
                         <option value="16:00">16:00</option>
+                        <option value="18:00">18:00</option>
                     </select>
                 </div>
 

@@ -1,4 +1,4 @@
-import '../assets/styles/exhibitionInfo.css';
+import '../../assets/styles/exhibitionInfo.css';
 
 export default function ExhibitionInfo() {
     return (

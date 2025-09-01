@@ -13,7 +13,8 @@ import Info from './pages/Info';
 import Exhibitions from './pages/Exhibitions';
 import About from './pages/About';
 import SignUp from './components/users/SignUp';
-import ReservationPage from './components/ReservationPage';
+import ReservationPage from './pages/ReservationPage';
+import ReservationCheck from './pages/ReservationCheck';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/reserve" element={<ReservationPage />} />
+                    <Route path="/ReservationCheck" element={<ReservationCheck />} />
                 </Routes>
             </BrowserRouter>
             <hr />
