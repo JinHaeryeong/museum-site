@@ -1,4 +1,4 @@
-import "../../assets/styles/Sign.css";
+import "../../assets/styles/sign.css";
 export default function SignIn() {
     return (
         <div className='signIn'>

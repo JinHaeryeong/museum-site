@@ -7,6 +7,7 @@ import SignUp from "./components/users/SignUp";
 import Exhibitions from "./pages/Exhibitions";
 import Info from "./pages/Info";
 import About from "./pages/About";
+import ReservationPage from "./pages/ReservationPage";
 
 function App() {
     return (
@@ -20,7 +21,7 @@ function App() {
                     <Route path='/info' element={<Info />} />
                     <Route path='/exhibitions' element={<Exhibitions />} />
                     <Route path='/about' element={<About />} />
-
+                    <Route path='/reserve' element={<ReservationPage />} />
                     <Route path='/signup' element={<SignUp />} />
                 </Routes>
             </BrowserRouter>
