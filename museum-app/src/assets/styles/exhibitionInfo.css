@@ -1,0 +1,21 @@
+.exhibition-wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.exhibition-content {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.exhibition-image {
+    width: 80%;
+}
+
+.exhibition-details {
+    font-size: 16px;
+    text-align: left;
+    margin-top: 12px;
+}
