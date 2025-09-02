@@ -1,5 +1,4 @@
-import React from 'react';
-import AboutInfo from '../components/home/AboutInfo';
+import AboutInfo from "../components/home/AboutInfo";
 
 export default function About() {
     return (

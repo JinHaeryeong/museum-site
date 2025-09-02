@@ -1,4 +1,15 @@
+.exhibitions {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+.exhibition-item {
+    width: 314px;
+    display: flex;
+    flex-direction: column;
+}
 .exhibition-center-item {
+    margin-top: 5px;
     display: flex;
 }
 .exhibition-center-badge {
@@ -6,6 +17,15 @@
     background-color: rgb(160, 149, 184);
     font-weight: 500;
     margin-right: 5px;
+}
+.exhibition-bottom-item {
+    overflow: auto;
+}
+.exhibition-bottom-title {
+    min-height: 55px;
+}
+.exhibition-bottom-location {
+    min-height: 45px;
 }
 .exhibition-item-btn {
     padding: 10px;

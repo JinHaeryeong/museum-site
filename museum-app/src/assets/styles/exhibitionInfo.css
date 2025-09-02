@@ -19,3 +19,6 @@
     text-align: left;
     margin-top: 12px;
 }
+.exhibition-item-btn {
+    cursor: pointer;
+}
