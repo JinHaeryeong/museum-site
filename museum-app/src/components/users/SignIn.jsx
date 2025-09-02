@@ -34,7 +34,7 @@ export default function SignIn({ onClose }) {
     const requestSignIn = async () => {
         try {
             const response = await apiSignIn(signInUser);
-            alert(JSON.stringify(response)); //{result:'success', message = 'aaa님 환영합니다.', data:{...}}
+            // alert(JSON.stringify(response)); //{result:'success', message = 'aaa님 환영합니다.', data:{...}}
             const { result, message, data } = response;
             if (result === "success") {
                 // 인증받은 사용자일 경우 서버가 보내온 accessToken과 refreshToken을 sessionStorage, localStorage에 저장
