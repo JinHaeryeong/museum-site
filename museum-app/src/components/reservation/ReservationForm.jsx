@@ -54,14 +54,6 @@ export default function ReservationForm({ exhibitionTitle }) {
             return;
         }
 
-        alert(`예약이 완료되었습니다.
-            예약자 이름 : ${form.name}
-            이메일: ${form.email}
-            전화번호: ${phoneNumber}
-            날짜: ${form.date}
-            시간: ${form.time}
-            인원 수: ${form.guests} 명`);
-
         setForm({
             name: '',
             email: '',

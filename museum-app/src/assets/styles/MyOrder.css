@@ -1,0 +1,119 @@
+.online-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 30px auto;
+    padding: 50px;
+    max-width: 100%;
+    background-color: #f3f3f3;
+    font-size: 20px;
+    line-height: 2;
+    color: #333;
+    font-weight: 600;
+}
+
+.online-info-header {
+    min-width: 200px;
+    padding-right: 16px;
+    font-size: 35px;
+    font-weight: 700;
+    color: #111;
+    text-align: left;
+}
+
+.list {
+    flex: 1;
+}
+
+.list ul {
+    margin: 0;
+}
+
+.board-list-total {
+    margin: 15px 0;
+    color: #333;
+    font-size: 15px;
+}
+
+.board {
+    max-width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.board-header,
+.board-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr 1fr 1fr;
+    margin: 0;
+    padding: 15px;
+    list-style: none;
+    align-items: center;
+}
+
+.board .board-header {
+    font-weight: 700;
+    border-top: 2px solid #333;
+}
+
+.board .board-row+.board-row {
+    border-top: 1px solid #eee;
+}
+
+.board li {
+    padding: 10px;
+    text-align: center;
+}
+
+.board .text-left {
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px;
+    padding-top: 20px;
+}
+
+.pagination li {
+    list-style: none;
+}
+
+.page-link,
+.pagination a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #222;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pagination .active a,
+.pagination .active .page-link {
+    border-color: #111;
+    font-weight: 600;
+}
+
+.pagination .disabled a,
+.pagination .disabled .page-link {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.pagination .prev a,
+.pagination .next a {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
