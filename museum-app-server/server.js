@@ -5,17 +5,23 @@ require("dotenv").config();
 //npm i dotenv morgan
 const path = require("path");
 const cors = require("cors");
-// const morgan = require("morgan");
+const morgan = require("morgan");
 
+const userRouter = require("./src/routes/userRouter");
+const signRouter = require("./src/routes/signRouter");
 const port = process.env.PORT || 7777;
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, "public")));
-// app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(morgan("dev"));
 app.use(cors());
+
+// 라우터 연결
+app.use("/api/users", userRouter);
+app.use("/api/auth", signRouter);
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}에서 서버가동중`);

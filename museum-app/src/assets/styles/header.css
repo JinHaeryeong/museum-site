@@ -13,6 +13,17 @@
     font-weight: 600;
     cursor: pointer;
 }
+.auth-user {
+    display: flex;
+    font-weight: 500;
+    margin-left: 50px;
+    cursor: pointer;
+    list-style: none;
+    box-sizing: border-box;
+}
+.user-icon {
+    margin-right: 10px;
+}
 .login-menu > li {
     font-weight: 500;
     margin-left: 30px;
@@ -26,6 +37,12 @@
     transition: max-width 0.5s ease-in-out;
 }
 
+/* .user-icon {
+    border: 1px solid black;
+    border-radius: 70%;
+    width: 50%;
+    height: 50%;
+} */
 .nav-list > li:hover .underline {
     max-width: 100%;
 }

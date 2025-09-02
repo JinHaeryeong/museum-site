@@ -76,6 +76,7 @@ export default function HomeContent() {
                 >
                     {carouselImgs.map((image, index) => (
                         <img
+                            key={image}
                             src={`/images/${image}.jpg`}
                             alt={`${carouselImgName + (index + 1)}`}
                             ref={(el) => (imageRefs.current[index] = el)}
@@ -142,7 +143,7 @@ export default function HomeContent() {
                         {Array(4)
                             .fill(0)
                             .map((_, index) => (
-                                <li className='main-exhibition-list-item'>
+                                <li className='main-exhibition-list-item' key={`exhibition_${index}`}>
                                     <div className='main-exhibition-item-img-container'>
                                         <img
                                             className='main-exhibition-item-img'
