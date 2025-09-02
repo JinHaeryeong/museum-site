@@ -6,21 +6,21 @@ import "../assets/styles/exhibitionInfo.css";
 import "../assets/styles/reservationPage.css";
 
 export default function ReservationPage() {
-    const location = useLocation();
-    const exhibition = location.state || {};
+  const location = useLocation();
+  const exhibition = location.state || {};
 
-    return (
-        <div>
-            <h2>전시 관람 예약</h2>
-            <div className='reservation-page'>
-                <section className='reservation-left'>
-                    <ExhibitionInfo {...exhibition} />
-                </section>
+  return (
+    <div>
+      <h2>전시 관람 예약</h2>
+      <div className="reservation-page">
+        <section className="reservation-left">
+          <ExhibitionInfo {...exhibition} />
+        </section>
 
-                <section className='reservation-right'>
-                    <ReservationForm exhibitionTitle={exhibition.title} />
-                </section>
-            </div>
-        </div>
-    );
+        <section className="reservation-right">
+          <ReservationForm exhibition={exhibition} />
+        </section>
+      </div>
+    </div>
+  );
 }

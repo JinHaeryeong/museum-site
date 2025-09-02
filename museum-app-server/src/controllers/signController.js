@@ -9,7 +9,7 @@ const generateToken = (user, secret, expirein) => {
 exports.signin = async (req, res) => {
     const { email, passwd } = req.body;
     try {
-        const sql = `SELECT email, passwd FROM users WHERE email = ?`;
+        const sql = `SELECT id, name, email, tel, passwd FROM users WHERE email = ?`;
         const [result] = await pool.query(sql, [email]);
         if (result.length === 0) return res.status(401).json({ result: "fail", message: "가입된 회원이 아닙니다" });
         const tmpUser = result[0];

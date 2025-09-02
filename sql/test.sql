@@ -47,23 +47,28 @@ insert into exhibitions(name) values("각角진 백자 이야기");
 select * from exhibitions;
 
 
--- 유저 테이블에 넣고 시작(예약 내역 확인)
-INSERT INTO users (
-    id, name, email, passwd, role, createdAt, tel
-) VALUES (
-    1, '김예시', 'yeshi@example.com', 
-    '$2b$10$G6.cGjI2MR9o00Bv4JD9jOS4sl1MF5rEMHDVvmbhMbkKKiBC0ZEFW',
-    'USER', '2025-09-02', '01012345678'
-);
+-- 유저 테이블에 넣고 시작(예약 내역 확인) 
+-- 웹에서 비밀번호 1234 입력 후 로그인
+INSERT INTO users (id, name, email, passwd, tel, role)
+VALUES (1, '김예시', 'example@naver.com', '$2b$10$N8rX4y0YOsgIey.lz6kGf.g4nr7C63fPpl/hLskq2Larv9bAjEuiS', '01012345678', 'USER');
 select * from users;
+-- delete from users;
 
-
--- 예약 내역 넣기
+-- 예약 내역 넣기[1]
 INSERT INTO reservations (
     user_id, exhibition_id, person_count, visit_datetime, status
 ) VALUES (
     1, 1, 2, '2025-09-10 10:00:00', '예약완료'
 );
 
+-- 예약 내역 넣기[2]
+INSERT INTO reservations (
+    user_id, exhibition_id, person_count, visit_datetime, status
+) VALUES (
+    1, 2, 7, '2025-09-10 12:00:00', '예약완료'
+);
+
 -- '김예시' 예약 내역 확인
 SELECT * FROM reservations WHERE user_id = 1;
+
+select * from reservations;
