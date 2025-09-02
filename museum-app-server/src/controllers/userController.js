@@ -14,6 +14,12 @@ exports.joinUser = async (req, res) => {
             .json({ result: "fail", message: "이름,이메일,비밀번호, 비밀번호 확인, 전화번호는 필수 입력입니다" });
     }
     try {
+        const checkSql = `SELECT email FROM users WHERE email = ?`;
+        const [existingUser] = await pool.query(checkSql, [email]);
+
+        if (existingUser.length > 0) {
+            return res.status(409).json({ result: "fail", message: "이미 사용 중인 이메일입니다." });
+        }
         // 비밀번호 암호화 처리
         const hashPasswd = await bcrypt.hash(pwd, salt);
         //로그인할 때는 bcrypt.compare(rawPwd, hashPwd)를 이용해서 사용자가 입력한 비번과 DB에서 가져온 암호화된 비번을 비교해서

@@ -55,11 +55,17 @@ export default function SignUp() {
         if (tel.length > 11) {
             signUpInput.tel = tel.slice(0, 11);
         }
+        if (tel.length < 11) {
+            alert("전화번호 길이가 부족합니다");
+            telRef.current?.focus();
+            return false;
+        }
         return true;
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
         const b = check();
+        if (!b) return;
         try {
             const url = `http://localhost:7777/api/users`;
             const response = await axios.post(url, signUpInput, {
@@ -67,12 +73,16 @@ export default function SignUp() {
                     "Content-Type": "application/json",
                 },
             });
-            alert(JSON.stringify(response));
+            // alert(JSON.stringify(response));
             if (response.status === 200) {
                 alert("회원가입을 완료하였습니다.");
                 navigate("/");
             }
         } catch (error) {
+            if (error.response.status === 409) {
+                alert("이미 존재하는 이메일입니다.");
+                return;
+            }
             alert("서버 오류: " + error.message);
         }
     };
