@@ -7,11 +7,11 @@ export default function SignIn() {
             </div>
             <div className='signIn-item'>
                 <label htmlFor='id'>아이디</label>
-                <input type='text' name='id' placeholder='아이디' />
+                <input type='text' name='id' id='id' placeholder='아이디' />
             </div>
             <div className='signIn-item'>
                 <label htmlFor='pwd'>비밀번호</label>
-                <input type='password' name='pwd' placeholder='비밀번호' />
+                <input type='password' name='pwd' id='pwd' placeholder='비밀번호' />
             </div>
             <div className='signIn-bottom'>
                 <div>아이디찾기</div>

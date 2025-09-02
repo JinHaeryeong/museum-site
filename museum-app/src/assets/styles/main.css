@@ -139,13 +139,19 @@
 .main-info-right-item:hover::after {
     opacity: 1;
 }
-
+.main-exhibition-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .main-exhibition-list {
+    width: 100%;
     text-align: center;
     list-style: none;
     display: flex;
     padding-left: 0;
     justify-content: space-around;
+    overflow: auto;
 }
 
 .main-exhibition-item-img-container {
