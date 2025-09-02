@@ -24,15 +24,17 @@ CREATE TABLE IF NOT EXISTS exhibitions (
 );
 -- 예약 내역
 CREATE TABLE IF NOT EXISTS reservations (
-	id int primary key auto_increment,
-    user_id int NOT NULL,
-    exhibition_id int NOT NULL,
-    person_count int NOT NULL DEFAULT 1,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    exhibition_id INT NOT NULL,
+    person_count INT NOT NULL DEFAULT 1,
     visit_datetime DATETIME NOT NULL,
-    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE,
-    FOREIGN KEY (exhibition_id) REFERENCES EXHIBITIONS(id) ON DELETE CASCADE
+    status VARCHAR(20) NOT NULL DEFAULT '예약완료',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (exhibition_id) REFERENCES exhibitions(id) ON DELETE CASCADE
 );
+
 show tables;
 desc reservations;
 desc exhibitions;
@@ -43,3 +45,25 @@ insert into exhibitions(name) values("국보순회전, 모두가 함께하는 18
 insert into exhibitions(name) values("두 발로 세계를 제패하다");
 insert into exhibitions(name) values("각角진 백자 이야기");
 select * from exhibitions;
+
+
+-- 유저 테이블에 넣고 시작(예약 내역 확인)
+INSERT INTO users (
+    id, name, email, passwd, role, createdAt, tel
+) VALUES (
+    1, '김예시', 'yeshi@example.com', 
+    '$2b$10$G6.cGjI2MR9o00Bv4JD9jOS4sl1MF5rEMHDVvmbhMbkKKiBC0ZEFW',
+    'USER', '2025-09-02', '01012345678'
+);
+select * from users;
+
+
+-- 예약 내역 넣기
+INSERT INTO reservations (
+    user_id, exhibition_id, person_count, visit_datetime, status
+) VALUES (
+    1, 1, 2, '2025-09-10 10:00:00', '예약완료'
+);
+
+-- '김예시' 예약 내역 확인
+SELECT * FROM reservations WHERE user_id = 1;
