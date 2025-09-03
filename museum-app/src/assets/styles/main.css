@@ -39,6 +39,7 @@
 .carousel-button.stop {
     bottom: 0;
     left: 50%;
+    border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.3);
 }
 .carousel-button.prev {
@@ -59,6 +60,10 @@
     border-radius: 50%;
     border: 1px solid black;
     margin-right: 5px;
+}
+
+.carousel-nav .currentSlide {
+    background-color: black;
 }
 .main-info {
     display: flex;
@@ -175,4 +180,8 @@
 }
 .main-exhibition-item-img-container:hover::after {
     opacity: 1;
+}
+
+.main-attention .main-attention-press ul {
+    list-style: none;
 }

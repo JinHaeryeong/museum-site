@@ -4,7 +4,8 @@
     height: 200px;
 }
 .exhibition-top-list {
-    height: 50px;
+    height: 100%;
+    width: 100%;
     justify-content: center;
     list-style: none;
     display: flex;
@@ -13,21 +14,29 @@
 }
 
 .exhibition-top-list-item {
+    height: 45px;
+    line-height: 40px;
+}
+.exhibition-top-list-item div {
+    height: 100%;
     margin-right: 5px;
+}
+.exhibition-top-list-item * {
     box-sizing: border-box;
+    height: 100%;
 }
-.exhibition-top-list .search {
-    width: 40%;
+.exhibition-top-list .exhibition-top-list-item .search {
+    width: 30rem;
 }
-.exhibition-top-list-item input {
+.exhibition-top-list-item .search input {
     width: 100%;
-    margin: 0 15px;
 }
-
 .exhibition-top-list-item button {
     border: none;
     color: white;
     background-color: rgb(111, 76, 133);
+    padding: 5px 15px;
+    border-radius: 5px;
 }
 .exhibitions-now {
     display: flex;

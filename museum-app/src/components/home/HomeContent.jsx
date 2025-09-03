@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import "../../assets/styles/main.css";
-import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon } from "lucide-react";
+import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, Play, Mic } from "lucide-react";
 import { ResizeObserver } from "@juggle/resize-observer";
+import { Link } from "react-router-dom";
 
 const carouselImgName = "carousel_img";
 const exhibitionImgName = "exhibition_img";
@@ -9,6 +10,7 @@ const carouselImgs = [`${carouselImgName}1`, `${carouselImgName}2`, `${carouselI
 export default function HomeContent() {
     // carousel 관련
     const [counter, setCounter] = useState(0);
+    const [autoPlay, setAutoPlay] = useState(false);
 
     const slideRef = useRef(null);
     const imageRefs = useRef([]);
@@ -33,13 +35,25 @@ export default function HomeContent() {
     };
 
     const startAutoSlide = () => {
-        slideIntervalRef.current = setInterval(handleCarouselNext, 3000);
+        if (!slideIntervalRef.current) {
+            slideIntervalRef.current = setInterval(handleCarouselNext, 3000);
+        }
     };
 
     const stopAutoSlide = () => {
         clearInterval(slideIntervalRef.current);
+        slideIntervalRef.current = null;
     };
 
+    const handleSlidesNav = () => {};
+
+    useEffect(() => {
+        if (autoPlay) {
+            stopAutoSlide();
+        } else {
+            startAutoSlide();
+        }
+    }, [autoPlay]);
     useEffect(() => {
         if (slideRef.current) {
             slideRef.current.style.transform = `translateX(${-size.current * counter}px)`;
@@ -68,12 +82,7 @@ export default function HomeContent() {
     return (
         <div>
             <div className='carousel'>
-                <div
-                    className='carousel-slides'
-                    ref={slideRef}
-                    onMouseEnter={stopAutoSlide}
-                    onMouseLeave={startAutoSlide}
-                >
+                <div className='carousel-slides' ref={slideRef}>
                     {carouselImgs.map((image, index) => (
                         <img
                             key={image}
@@ -89,12 +98,12 @@ export default function HomeContent() {
                 <div className='carousel-button next' onClick={handleCarouselNext}>
                     <ArrowRightCircleIcon size={42} />
                 </div>
-                <div className='carousel-button stop' onClick={stopAutoSlide}>
-                    <Pause />
+                <div className='carousel-button stop' onClick={() => setAutoPlay(!autoPlay)}>
+                    {autoPlay ? <Play /> : <Pause />}
                 </div>
                 <div className='carousel-nav'>
                     {carouselImgs.map((_, index) => (
-                        <div></div>
+                        <div className={`carousel-nav-btn ${counter === index ? "currentSlide" : ""}`}></div>
                     ))}
                 </div>
             </div>
@@ -127,11 +136,15 @@ export default function HomeContent() {
                 </div>
                 <div className='main-info-right'>
                     <div className='main-info-right-item'>
-                        <div>오시는길</div>
+                        <Link to='/location'>
+                            <div>오시는길</div>
+                        </Link>
                         <hr size='5' color='black' />
                     </div>
                     <div className='main-info-right-item'>
-                        <div>예약하기</div>
+                        <Link to='/exhibitions'>
+                            <div>예약하기</div>
+                        </Link>
                         <hr size='5' color='black' />
                     </div>
                 </div>
@@ -158,9 +171,35 @@ export default function HomeContent() {
                     </ul>
                 </div>
             </div>
-            <div>
-                <h1>메인 알립니다 영역</h1>
+            <div className='main-attention'>
+                <h1>
+                    알립니다
+                    {/* <Mic size={30} /> */}
+                </h1>
+                <div className='main-attention-press'>
+                    <ul>
+                        <li>
+                            <a href='https://www.newsis.com/view/NISX20250902_0003311919'>
+                                뮷즈 '까치호랑이' 구하나요?…'박물관·미술관 박람회'서 日 100개 풀린다
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://news.mt.co.kr/mtview.php?no=2025082709524536411'>
+                                "'단청 키보드' 대박 터졌다"…국립중앙박물관 '필수 굿즈' 외국인들 싹쓸이
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://www.news1.kr/photos/7463601'>국립중앙박물관 '오픈런'</a>
+                        </li>
+                        <li>
+                            <a href='국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대'>
+                                국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
             <div></div>
         </div>
     );

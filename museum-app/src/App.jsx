@@ -13,9 +13,15 @@ import Mypage from "./pages/Mypage";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import axiosAuthInstance from "./api/axiosAuthInstance";
+import Location from "./pages/Location";
+import { useKakaoLoader } from "react-kakao-maps-sdk";
 
 function App() {
     const signInAuthUser = useAuthStore((s) => s.signInAuthUser);
+    useKakaoLoader({
+        appkey: import.meta.env.VITE_KAKAO_API_KEY,
+        libraries: ["services", "clusterer"],
+    });
 
     useEffect(() => {
         requestAuthUser();
@@ -49,6 +55,7 @@ function App() {
                     <Route path='/exhibitions' element={<Exhibitions />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/signup' element={<SignUp />} />
+                    <Route path='/location' element={<Location />} />
                     <Route path='/reserve' element={<ReservationPage />} />
                     <Route path='/reservationCheck' element={<ReservationCheck />} />
                     <Route path='/mypage' element={<Mypage />} />
