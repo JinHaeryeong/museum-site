@@ -3,14 +3,24 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useAuthStore } from '../../stores/authStore';
-import { apiGetReservations } from '../../api/reservationApi';
+import { apiGetReservations, apiCancelReservation } from '../../api/reservationApi';
+import Modal from '../Modal';
 import '../../assets/styles/MyOrder.css';
+import Cancle from '../reservation/Cancle';
 
 export default function MyOrder() {
     const authUser = useAuthStore((s) => s.authUser);
     const [reservations, setReservations] = useState([]);
     const [totalItems, setTotalItems] = useState(0);
     const [loading, setLoading] = useState(true);
+
+    const [isOpenModal, setIsModalOpen] = useState(false);
+    const openCancleModal = () => {
+        setIsModalOpen(true);
+    };
+    const closeCancleModal = () => {
+        setIsModalOpen(false);
+    };
 
     const perPage = 5;
     const [sp] = useSearchParams();
@@ -84,6 +94,7 @@ export default function MyOrder() {
                     <li>신청일</li>
                     <li>상태</li>
                     <li>인원</li>
+                    <li>취소</li>
                 </ul>
             </div>
 
@@ -101,11 +112,21 @@ export default function MyOrder() {
                         <li className="text-left">{r.title}</li>
                         <li>{r.visitAt}</li>
                         <li>{r.appliedAt}</li>
-                        <li>{r.status}</li>
+                        <li className="status">{r.status}</li>
                         <li>{r.guests}</li>
+                        <li>
+                            <button className="cancle-button" onClick={openCancleModal}>
+                                취소
+                            </button>
+                        </li>
                     </ul>
                 ))}
             </div>
+            {isOpenModal && (
+                <Modal isOpen={isOpenModal} onClose={closeCancleModal} title="취소할거니!!">
+                    <Cancle onClose={closeCancleModal} />
+                </Modal>
+            )}
 
             <ReactPaginate
                 previousLabel="‹"
