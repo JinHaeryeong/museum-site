@@ -1,138 +1,130 @@
-import { useEffect, useState, useMemo } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import ReactPaginate from "react-paginate";
-import { FiAlertCircle } from "react-icons/fi";
-import { useAuthStore } from "../../stores/authStore";
-import { apiGetReservations } from "../../api/reservationApi";
-import "../../assets/styles/MyOrder.css";
+import { useEffect, useState, useMemo } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
+import { FiAlertCircle } from 'react-icons/fi';
+import { useAuthStore } from '../../stores/authStore';
+import { apiGetReservations } from '../../api/reservationApi';
+import '../../assets/styles/MyOrder.css';
 
 export default function MyOrder() {
-  const authUser = useAuthStore((s) => s.authUser);
-  const [reservations, setReservations] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const authUser = useAuthStore((s) => s.authUser);
+    const [reservations, setReservations] = useState([]);
+    const [totalItems, setTotalItems] = useState(0);
+    const [loading, setLoading] = useState(true);
 
-  const perPage = 5;
-  const [sp] = useSearchParams();
-  const navigate = useNavigate();
-  const page = Math.max(1, Number(sp.get("page") || 1));
+    const perPage = 5;
+    const [sp] = useSearchParams();
+    const navigate = useNavigate();
+    const page = Math.max(1, Number(sp.get('page') || 1));
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!authUser?.id) {
-        setLoading(false);
-        return;
-      }
-      try {
-        const res = await apiGetReservations({ userId: authUser.id });
+    useEffect(() => {
+        const fetchData = async () => {
+            if (!authUser?.id) {
+                setLoading(false);
+                return;
+            }
+            try {
+                const res = await apiGetReservations({ userId: authUser.id, page, perPage });
 
-        if (res?.result === "success") {
-          setReservations(res.data.items);
-        } else {
-          alert(res?.message || "예약 내역을 불러올 수 없습니다.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("예약 내역 불러오기 중 오류가 발생했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    };
+                if (res?.result === 'success') {
+                    setReservations(res.data.items || []);
+                    setTotalItems(Number(res.data.total || 0));
+                } else {
+                    alert(res?.message || '예약 내역을 불러올 수 없습니다.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('예약 내역 불러오기 중 오류가 발생했습니다.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [authUser, page]);
 
-    fetchData();
-  }, [authUser]);
+    const pageCount = Math.max(1, Math.ceil(totalItems / perPage));
 
-  const totalItems = reservations.length;
+    const sliced = useMemo(() => {
+        return reservations;
+    }, [reservations]);
 
-  const sliced = useMemo(() => {
-    const start = (page - 1) * perPage;
-    return reservations.slice(start, start + perPage);
-  }, [reservations, page]);
+    if (loading) return <p>로딩 중...</p>;
+    if (!authUser) {
+        return <p>로그인 후 예약 내역을 확인할 수 있습니다.</p>;
+    }
 
-  const pageCount = Math.max(1, Math.ceil(totalItems / perPage));
+    return (
+        <div>
+            <h2>전체 예약 현황</h2>
 
-  if (loading) return <p>로딩 중...</p>;
+            <div className="online-info">
+                <div className="online-info-header">
+                    <FiAlertCircle /> <br />
+                    예약 이용 안내
+                </div>
+                <div className="list">
+                    <ul>
+                        <li>회원님의 예약 내역을 조회하고 취소하실 수 있습니다.</li>
+                        <li>예약취소는 예약취소를 누르시면 됩니다.</li>
+                        <li>예약취소하실 때는 다른 이용객들이 예약할 수 있도록 미리 취소해주시기 바랍니다.</li>
+                        <li>[출력]을 누르시면 접수증(예약확인증)을 출력하실 수 있습니다.</li>
+                        <li>접수된 후 프로그램 불참 시에는 불이익을 당하실 수 있습니다.</li>
+                    </ul>
+                </div>
+            </div>
 
-  if (!authUser) {
-    return <p>로그인 후 예약 내역을 확인할 수 있습니다.</p>;
-  }
+            <h2>예약 현황</h2>
+            <p className="board-list-total">총 {totalItems}건이 검색되었습니다.</p>
 
-  return (
-    <div>
-      <h2>전체 예약 현황</h2>
+            <div className="board">
+                <ul className="board-header">
+                    <li>예약번호</li>
+                    <li>예약명</li>
+                    <li>관람일시</li>
+                    <li>신청일</li>
+                    <li>상태</li>
+                    <li>인원</li>
+                </ul>
+            </div>
 
-      <div className="online-info">
-        <div className="online-info-header">
-          <FiAlertCircle /> <br />
-          예약 이용 안내
+            <div className="board">
+                {sliced.length === 0 && (
+                    <ul className="board-row">
+                        <li className="text-left" style={{ gridColumn: '1 / -1' }}>
+                            예약 내역이 없습니다.
+                        </li>
+                    </ul>
+                )}
+                {sliced.map((r) => (
+                    <ul className="board-row" key={r.id}>
+                        <li>{r.id}</li>
+                        <li className="text-left">{r.title}</li>
+                        <li>{r.visitAt}</li>
+                        <li>{r.appliedAt}</li>
+                        <li>{r.status}</li>
+                        <li>{r.guests}</li>
+                    </ul>
+                ))}
+            </div>
+
+            <ReactPaginate
+                previousLabel="‹"
+                nextLabel="›"
+                breakLabel="…"
+                pageCount={pageCount}
+                forcePage={Math.min(page - 1, pageCount - 1)}
+                onPageChange={(e) => navigate(`?page=${e.selected + 1}`)}
+                containerClassName="pagination"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                activeClassName="active"
+                disabledClassName="disabled"
+                previousClassName="prev"
+                nextClassName="next"
+                breakClassName="break"
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={5}
+            />
         </div>
-        <div className="list">
-          <ul>
-            <li>회원님의 예약 내역을 조회하고 취소하실 수 있습니다.</li>
-            <li>예약취소는 예약취소를 누르시면 됩니다.</li>
-            <li>
-              예약취소하실 때는 다른 이용객들이 예약할 수 있도록 미리
-              취소해주시기 바랍니다.
-            </li>
-            <li>
-              [출력]을 누르시면 접수증(예약확인증)을 출력하실 수 있습니다.
-            </li>
-            <li>접수된 후 프로그램 불참 시에는 불이익을 당하실 수 있습니다.</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2>예약 현황</h2>
-      <p className="board-list-total">총 {totalItems}건이 검색되었습니다.</p>
-
-      <div className="board">
-        <ul className="board-header">
-          <li>예약번호</li>
-          <li>예약명</li>
-          <li>관람일시</li>
-          <li>신청일</li>
-          <li>상태</li>
-          <li>인원</li>
-        </ul>
-      </div>
-
-      <div className="board">
-        {sliced.length === 0 && (
-          <ul className="board-row">
-            <li className="text-left" style={{ gridColumn: "1 / -1" }}>
-              예약 내역이 없습니다.
-            </li>
-          </ul>
-        )}
-        {sliced.map((r) => (
-          <ul className="board-row" key={r.id}>
-            <li>{r.id}</li>
-            <li className="text-left">{r.title}</li>
-            <li>{r.visitAt}</li>
-            <li>{r.appliedAt}</li>
-            <li>{r.status}</li>
-            <li>{r.guests}</li>
-          </ul>
-        ))}
-      </div>
-
-      <ReactPaginate
-        previousLabel="‹"
-        nextLabel="›"
-        breakLabel="…"
-        pageCount={pageCount}
-        forcePage={page - 1}
-        onPageChange={(e) => navigate(`?page=${e.selected + 1}`)}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        activeClassName="active"
-        disabledClassName="disabled"
-        previousClassName="prev"
-        nextClassName="next"
-        breakClassName="break"
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={5}
-      />
-    </div>
-  );
+    );
 }
