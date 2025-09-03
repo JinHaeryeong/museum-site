@@ -1,8 +1,40 @@
-.exhibitions {
+.exhibition-top-item {
+    width: 100%;
+    background-color: gainsboro;
+    height: 200px;
+}
+.exhibition-top-list {
+    height: 50px;
+    justify-content: center;
+    list-style: none;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.exhibition-top-list-item {
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+.exhibition-top-list .search {
+    width: 40%;
+}
+.exhibition-top-list-item input {
+    width: 100%;
+    margin: 0 15px;
+}
+
+.exhibition-top-list-item button {
+    border: none;
+    color: white;
+    background-color: rgb(111, 76, 133);
+}
+.exhibitions-now {
     display: flex;
     justify-content: space-around;
     padding: 0;
 }
+
 .exhibition-item {
     width: 314px;
     display: flex;
@@ -14,15 +46,14 @@
 }
 .exhibition-center-badge {
     padding: 5px 15px;
-    background-color: rgb(160, 149, 184);
-    font-weight: 500;
+    background-color: rgb(115, 99, 150);
+    color: white;
     margin-right: 5px;
 }
-.exhibition-bottom-item {
-    overflow: auto;
-}
+
 .exhibition-bottom-title {
-    min-height: 55px;
+    min-height: 60px;
+    font-weight: 600;
 }
 .exhibition-bottom-location {
     min-height: 45px;
@@ -31,7 +62,7 @@
     padding: 10px;
     border: none;
     font-size: large;
-    background-color: rgb(6, 6, 6);
+    background-color: rgb(50, 43, 43);
     color: white;
     border-radius: 5px;
 }
