@@ -80,7 +80,7 @@ export default function ReservationInfoCard({ title, name, email, phone, date, t
             </div>
 
             <div className="reservation-info-actions" style={{ gap: 8 }}>
-                <button className="info-button" onClick={() => navigate('/')} disabled={saving}>
+                <button className="info-button" onClick={() => navigate('/exhibitions')} disabled={saving}>
                     돌아가기
                 </button>
                 <button className="info-button" onClick={onConfirm} disabled={saving}>

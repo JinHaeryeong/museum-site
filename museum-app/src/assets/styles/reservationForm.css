@@ -36,7 +36,8 @@
 
 .form-group.required label::before {
   content: "* ";
-  color: crimson;
+  color: #ff0000;
+  font-weight: bold;
 }
 
 .form-group input,
