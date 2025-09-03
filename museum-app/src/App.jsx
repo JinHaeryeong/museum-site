@@ -15,48 +15,49 @@ import { useAuthStore } from "./stores/authStore";
 import axiosAuthInstance from "./api/axiosAuthInstance";
 
 function App() {
-  const signInAuthUser = useAuthStore((s) => s.signInAuthUser);
+    const signInAuthUser = useAuthStore((s) => s.signInAuthUser);
 
-  useEffect(() => {
-    requestAuthUser();
-  }, []);
+    useEffect(() => {
+        requestAuthUser();
+    }, [signInAuthUser]);
 
-  const requestAuthUser = async () => {
-    try {
-      const accessToken = sessionStorage.getItem("accessToken");
-      if (accessToken) {
-        const response = await axiosAuthInstance.get(`/auth/user`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        signInAuthUser(authUser); //인증사용자 정보 전역 state에 설정 후 로딩 상태 false
-      }
-    } catch (error) {
-      sessionStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-    }
-  };
+    const requestAuthUser = async () => {
+        try {
+            const accessToken = sessionStorage.getItem("accessToken");
+            if (accessToken) {
+                const response = await axiosAuthInstance.get(`/auth/user`, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+                const authUser = await response.data;
+                signInAuthUser(authUser); //인증사용자 정보 전역 state에 설정 후 로딩 상태 false
+            }
+        } catch (error) {
+            sessionStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
+        }
+    };
 
-  return (
-    <div className="container">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/info" element={<Info />} />
-          <Route path="/exhibitions" element={<Exhibitions />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/reserve" element={<ReservationPage />} />
-          <Route path="/reservationCheck" element={<ReservationCheck />} />
-          <Route path="/mypage" element={<Mypage />} />
-        </Routes>
-      </BrowserRouter>
-      <hr />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className='container'>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/info' element={<Info />} />
+                    <Route path='/exhibitions' element={<Exhibitions />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/reserve' element={<ReservationPage />} />
+                    <Route path='/reservationCheck' element={<ReservationCheck />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                </Routes>
+            </BrowserRouter>
+            <hr />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
