@@ -1,0 +1,30 @@
+.modal-cancelBtn {
+    color: #000;
+    font-weight: bold;
+    width: 90%;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.modal-cancelBtn:hover {
+    background-color: #fa5858;
+}
+
+
+.cancel-text {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.cancel-button:disabled {
+    opacity: 0.6;
+    cursor: default;
+    background-color: #f5f5f5;
+}

@@ -6,7 +6,8 @@ import { useAuthStore } from '../../stores/authStore';
 import { apiGetReservations, apiCancelReservation } from '../../api/reservationApi';
 import Modal from '../Modal';
 import '../../assets/styles/MyOrder.css';
-import Cancle from '../reservation/Cancle';
+import Cancel from '../reservation/Cancel';
+import axiosAuthInstance from '../../api/axiosAuthInstance';
 
 export default function MyOrder() {
     const authUser = useAuthStore((s) => s.authUser);
@@ -15,10 +16,13 @@ export default function MyOrder() {
     const [loading, setLoading] = useState(true);
 
     const [isOpenModal, setIsModalOpen] = useState(false);
-    const openCancleModal = () => {
+    const [targetId, setTargetId] = useState(null);
+    const openCancelModal = (id) => {
+        setTargetId(id);
         setIsModalOpen(true);
     };
-    const closeCancleModal = () => {
+    const closeCancelModal = (id) => {
+        setTargetId(null);
         setIsModalOpen(false);
     };
 
@@ -51,6 +55,23 @@ export default function MyOrder() {
         };
         fetchData();
     }, [authUser, page]);
+
+    const handleConfirmCancel = async () => {
+        if (!targetId) return;
+        try {
+            const res = await apiCancelReservation(targetId);
+            if (res?.result === 'success') {
+                setReservations((prev) => prev.map((r) => (r.id === String(targetId) ? { ...r, status: '취소' } : r)));
+            } else {
+                alert(res.message || '예약 취소 실패');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('예약 취소 중 오류 발생');
+        } finally {
+            closeCancelModal();
+        }
+    };
 
     const pageCount = Math.max(1, Math.ceil(totalItems / perPage));
 
@@ -115,16 +136,20 @@ export default function MyOrder() {
                         <li className="status">{r.status}</li>
                         <li>{r.guests}</li>
                         <li>
-                            <button className="cancle-button" onClick={openCancleModal}>
-                                취소
+                            <button
+                                className="cancel-button"
+                                onClick={() => openCancelModal(r.id)}
+                                disabled={r.status === '취소'}
+                            >
+                                {r.status === '취소' ? '취소됨' : '취소'}
                             </button>
                         </li>
                     </ul>
                 ))}
             </div>
             {isOpenModal && (
-                <Modal isOpen={isOpenModal} onClose={closeCancleModal} title="취소할거니!!">
-                    <Cancle onClose={closeCancleModal} />
+                <Modal isOpen={isOpenModal} onClose={closeCancelModal}>
+                    <Cancel onConfirm={handleConfirmCancel} />
                 </Modal>
             )}
 
