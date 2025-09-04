@@ -45,7 +45,7 @@
 .board-header,
 .board-row {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 2fr 2fr 1fr 1fr 1fr;
     margin: 0;
     padding: 15px;
     list-style: none;
@@ -64,6 +64,7 @@
 .board li {
     padding: 10px;
     text-align: center;
+
 }
 
 .board .text-left {
@@ -116,4 +117,18 @@
     width: 30px;
     height: 30px;
     padding: 0;
+}
+
+
+.status {
+    color: rgb(117, 40, 189);
+    font-weight: bold;
+}
+
+.cancle-button {
+    width: 70px;
+    height: 30px;
+    border: 1px solid #333;
+    font-weight: 500;
+    background-color: #ffffff;
 }

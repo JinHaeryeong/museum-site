@@ -1,6 +1,5 @@
 // controllers/reservationController.js
-const pool = require("../config/dbPools");
-
+const pool = require('../config/dbPools');
 
 exports.list = async (req, res) => {
     //페이지네이션 page=1, perPage=10
@@ -10,7 +9,7 @@ exports.list = async (req, res) => {
     const offset = (page - 1) * perPage;
 
     if (!userId) {
-        return res.status(400).json({ result: "fail", message: "userId는 필수입니다." });
+        return res.status(400).json({ result: 'fail', message: 'userId는 필수입니다.' });
     }
 
     try {
@@ -32,28 +31,28 @@ exports.list = async (req, res) => {
             ORDER BY reservations.created_at DESC
             LIMIT ? OFFSET ?
         `;
-    
-    const [rows] = await pool.query(sqlList, [userId, perPage, offset]);
 
-    return res.json({
-        result: "success",
-        data: {
-            total,
-            page,
-            perPage,
-            items: rows.map(r => ({
-            id: String(r.id),
-            title: r.title,
-            visitAt: r.visitAt,
-            appliedAt: r.appliedAt,
-            status: r.status,
-            guests: String(r.guests),
-        })),
-      },
-    });
+        const [rows] = await pool.query(sqlList, [userId, perPage, offset]);
+
+        return res.json({
+            result: 'success',
+            data: {
+                total,
+                page,
+                perPage,
+                items: rows.map((r) => ({
+                    id: String(r.id),
+                    title: r.title,
+                    visitAt: r.visitAt,
+                    appliedAt: r.appliedAt,
+                    status: r.status,
+                    guests: String(r.guests),
+                })),
+            },
+        });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ result: "fail", message: "예약 조회 실패: " + error.message });
+        return res.status(500).json({ result: 'fail', message: '예약 조회 실패: ' + error.message });
     }
 };
 
@@ -62,8 +61,8 @@ exports.create = async (req, res) => {
 
     if (!user_id || !exhibition_id || !visit_datetime) {
         return res
-        .status(400)
-        .json({ result: "fail", message: "user_id, exhibition_id, visit_datetime은 필수입니다." });
+            .status(400)
+            .json({ result: 'fail', message: 'user_id, exhibition_id, visit_datetime은 필수입니다.' });
     }
 
     try {
@@ -76,29 +75,28 @@ exports.create = async (req, res) => {
             Number(exhibition_id),
             Number(person_count || 1),
             visit_datetime,
-            status || "예약완료",
+            status || '예약완료',
         ];
         const [result] = await pool.query(sql, params);
 
         if (result.affectedRows > 0) {
             return res.json({
-                result: "success",
-                message: "예약이 생성되었습니다.",
+                result: 'success',
+                message: '예약이 생성되었습니다.',
                 data: { id: result.insertId },
             });
         }
-        return res.status(400).json({ result: "fail", message: "예약 생성 실패" });
+        return res.status(400).json({ result: 'fail', message: '예약 생성 실패' });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ result: "fail", message: "예약 생성 실패: " + error.message });
+        return res.status(500).json({ result: 'fail', message: '예약 생성 실패: ' + error.message });
     }
 };
-
 
 exports.cancel = async (req, res) => {
     const id = Number(req.params.id);
     if (!id) {
-        return res.status(400).json({ result: "fail", message: "예약 id가 유효하지 않습니다." });
+        return res.status(400).json({ result: 'fail', message: '예약 id가 유효하지 않습니다.' });
     }
 
     try {
@@ -106,11 +104,11 @@ exports.cancel = async (req, res) => {
         const [result] = await pool.query(sql, [id]);
 
         if (result.affectedRows > 0) {
-            return res.json({ result: "success", message: "예약이 취소되었습니다." });
+            return res.json({ result: 'success', message: '예약이 취소되었습니다.' });
         }
-        return res.status(404).json({ result: "fail", message: "해당 예약을 찾을 수 없습니다." });
+        return res.status(404).json({ result: 'fail', message: '해당 예약을 찾을 수 없습니다.' });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ result: "fail", message: "예약 취소 실패: " + error.message });
+        return res.status(500).json({ result: 'fail', message: '예약 취소 실패: ' + error.message });
     }
 };

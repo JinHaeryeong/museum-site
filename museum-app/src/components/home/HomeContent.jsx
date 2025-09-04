@@ -8,6 +8,8 @@ const carouselImgName = "carousel_img";
 const exhibitionImgName = "exhibition_img";
 const carouselImgs = [`${carouselImgName}1`, `${carouselImgName}2`, `${carouselImgName}3`, `${carouselImgName}4`];
 export default function HomeContent() {
+    const navigate = useNavigate();
+
     // carousel 관련
     const [counter, setCounter] = useState(0);
     const [autoPlay, setAutoPlay] = useState(false);
@@ -142,9 +144,13 @@ export default function HomeContent() {
                         <hr size='5' color='black' />
                     </div>
                     <div className='main-info-right-item'>
-                        <Link to='/exhibitions'>
-                            <div>예약하기</div>
-                        </Link>
+                        <div
+                            onClick={() => {
+                                navigate("/exhibitions");
+                            }}
+                        >
+                            예약하기
+                        </div>
                         <hr size='5' color='black' />
                     </div>
                 </div>

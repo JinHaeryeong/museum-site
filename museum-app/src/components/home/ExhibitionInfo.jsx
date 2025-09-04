@@ -3,8 +3,7 @@ import '../../assets/styles/exhibitionInfo.css';
 export default function ExhibitionInfo({ title, period, location, image }) {
     return (
         <div className="exhibition-wrapper">
-            <h2>전시 정보</h2>
-            <hr />
+            <h2 className="exhibition-info">전시 정보</h2>
             <div className="exhibition-content">
                 <img className="exhibition-image" src={image} alt="전시 포스터" />
                 <h3>{title}</h3>
