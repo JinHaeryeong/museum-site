@@ -3,12 +3,16 @@ import "../../assets/styles/main.css";
 import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, Play, Mic } from "lucide-react";
 import { ResizeObserver } from "@juggle/resize-observer";
 import { Link } from "react-router-dom";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import { apiCalendar } from "../../api/calendarApi";
 
 const carouselImgName = "carousel_img";
 const exhibitionImgName = "exhibition_img";
 const carouselImgs = [`${carouselImgName}1`, `${carouselImgName}2`, `${carouselImgName}3`, `${carouselImgName}4`];
 export default function HomeContent() {
-    const navigate = useNavigate();
+    //calendar 관련 -> 메인에서만 쓰니까 전역관리 필요 X
+    const [exhibitions, setExhibitinos] = useState([]);
 
     // carousel 관련
     const [counter, setCounter] = useState(0);
@@ -47,7 +51,14 @@ export default function HomeContent() {
         slideIntervalRef.current = null;
     };
 
-    const handleSlidesNav = () => {};
+    const loadCalendar = async () => {
+        const response = await apiCalendar();
+        //확인해보기
+
+        setExhibitinos(response.data);
+
+        return;
+    };
 
     useEffect(() => {
         if (autoPlay) {
@@ -73,6 +84,7 @@ export default function HomeContent() {
         }
 
         startAutoSlide();
+        loadCalendar();
 
         return () => {
             stopAutoSlide();
@@ -144,13 +156,9 @@ export default function HomeContent() {
                         <hr size='5' color='black' />
                     </div>
                     <div className='main-info-right-item'>
-                        <div
-                            onClick={() => {
-                                navigate("/exhibitions");
-                            }}
-                        >
-                            예약하기
-                        </div>
+                        <Link to='/exhibitions'>
+                            <div>예약하기</div>
+                        </Link>
                         <hr size='5' color='black' />
                     </div>
                 </div>
@@ -178,35 +186,54 @@ export default function HomeContent() {
                 </div>
             </div>
             <div className='main-attention'>
-                <h1>
-                    알립니다
-                    {/* <Mic size={30} /> */}
-                </h1>
-                <div className='main-attention-press'>
-                    <ul>
-                        <li>
-                            <a href='https://www.newsis.com/view/NISX20250902_0003311919'>
-                                뮷즈 '까치호랑이' 구하나요?…'박물관·미술관 박람회'서 日 100개 풀린다
-                            </a>
-                        </li>
-                        <li>
-                            <a href='https://news.mt.co.kr/mtview.php?no=2025082709524536411'>
-                                "'단청 키보드' 대박 터졌다"…국립중앙박물관 '필수 굿즈' 외국인들 싹쓸이
-                            </a>
-                        </li>
-                        <li>
-                            <a href='https://www.news1.kr/photos/7463601'>국립중앙박물관 '오픈런'</a>
-                        </li>
-                        <li>
-                            <a href='국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대'>
-                                국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대
-                            </a>
-                        </li>
-                    </ul>
+                <div className='main-press-container'>
+                    <div className='main-attention-press'>
+                        <h1>
+                            알립니다
+                            {/* <Mic size={30} /> */}
+                        </h1>
+                        <ul className='main-attention-list'>
+                            <li className='main-attention-list-item'>
+                                <a href='https://www.newsis.com/view/NISX20250902_0003311919'>
+                                    뮷즈 '까치호랑이' 구하나요?…'박물관·미술관 박람회'서 日 100개 풀린다
+                                </a>
+                            </li>
+                            <li className='main-attention-list-item'>
+                                <a href='https://news.mt.co.kr/mtview.php?no=2025082709524536411'>
+                                    "'단청 키보드' 대박 터졌다"…국립중앙박물관 '필수 굿즈' 외국인들 싹쓸이
+                                </a>
+                            </li>
+                            <li className='main-attention-list-item'>
+                                <a href='https://www.news1.kr/photos/7463601'>국립중앙박물관 '오픈런'</a>
+                            </li>
+                            <li className='main-attention-list-item'>
+                                <a href='국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대'>
+                                    국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대
+                                </a>
+                            </li>
+                            <li className='main-attention-list-item'>
+                                <a href='https://search.naver.com/search.naver?ssc=tab.news.all&where=news&sm=tab_jum&query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80'>
+                                    더보기 +
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='main-schedules'>
+                        <h1>주요일정</h1>
+                        {exhibitions ? (
+                            <FullCalendar
+                                plugins={[dayGridPlugin]}
+                                initialView='dayGridMonth'
+                                events={exhibitions}
+                                eventColor='rgb(0, 0, 0)'
+                                displayEventTime={false}
+                            />
+                        ) : (
+                            "로딩중..."
+                        )}
+                    </div>
                 </div>
             </div>
-
-            <div></div>
         </div>
     );
 }
