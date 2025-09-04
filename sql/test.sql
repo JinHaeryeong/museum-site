@@ -40,10 +40,7 @@ desc reservations;
 desc exhibitions;
 
 -- 전시 테이블에 넣고 시작하기
-insert into exhibitions(name) values("마나 모아나-신성한 바다의 예술, 오세아니아");
-insert into exhibitions(name) values("국보순회전, 모두가 함께하는 180일의 여정");
-insert into exhibitions(name) values("두 발로 세계를 제패하다");
-insert into exhibitions(name) values("각角진 백자 이야기");
+
 select * from exhibitions;
 
 
@@ -72,3 +69,15 @@ INSERT INTO reservations (
 SELECT * FROM reservations WHERE user_id = 1;
 
 select * from reservations;
+
+desc exhibitions;
+
+-- exhibitions 컬럼 추가(보류)
+-- ALTER TABLE exhibitions ADD period VARCHAR(30) NOT NULL;
+-- ALTER TABLE exhibitions ADD location VARCHAR(50) NOT NULL;
+
+-- insert into exhibitions(name, period, location) values("마나 모아나-신성한 바다의 예술, 오세아니아","2025-04-30~2025-09-14","국립중앙박물관 특별전시실2");
+-- insert into exhibitions(name, period, location) values("국보순회전, 모두가 함께하는 180일의 여정");
+-- insert into exhibitions(name, period, location) values("두 발로 세계를 제패하다");
+-- insert into exhibitions(name, period, location) values("각角진 백자 이야기");
+
