@@ -33,7 +33,7 @@ axiosAuthInstance.interceptors.request.use(
                 // console.log(`새 액세스 토큰 받음: ${newAccessToken}`);
                 if (newAccessToken) {
                     sessionStorage.setItem("accessToken", newAccessToken);
-                    config.headers["Authorization"] = `Bearer ${accessToken}`;
+                    config.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return config;
                 }
                 return config;
@@ -68,7 +68,7 @@ axiosAuthInstance.interceptors.response.use(
                 // console.log(`새 액세스 토큰 받음: ${newAccessToken}`);
                 if (newAccessToken) {
                     sessionStorage.setItem("accessToken", newAccessToken);
-                    err.config.headers["Authorization"] = `Bearer ${accessToken}`;
+                    err.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosAuthInstance.err.config; //원래 요청 재시도
                 } ///////////////////
             } catch (error) {
@@ -76,6 +76,7 @@ axiosAuthInstance.interceptors.response.use(
             }
             localStorage.removeItem("refreshToken");
             sessionStorage.removeItem("accessToken");
+            sessionStorage.removeItem("authUser");
             window.location.href = "/";
             return Promise.reject(err);
         }

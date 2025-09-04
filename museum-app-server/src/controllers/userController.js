@@ -8,7 +8,7 @@ exports.joinUser = async (req, res) => {
 
     const user = req.body;
     //응답: result=>[success, fail], message:결과메시지
-    if (!name || !email || !pwd) {
+    if (!name || !email || !pwd || !tel) {
         return res
             .status(400)
             .json({ result: "fail", message: "이름,이메일,비밀번호, 비밀번호 확인, 전화번호는 필수 입력입니다" });
