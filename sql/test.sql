@@ -65,6 +65,13 @@ INSERT INTO reservations (
     1, 2, 7, '2025-09-10 12:00:00', '예약완료'
 );
 
+-- 예약 내역 넣기[3]
+INSERT INTO reservations (
+    user_id, exhibition_id, person_count, visit_datetime, status
+) VALUES (
+    1, 2, 7, '2025-09-10 12:00:00', '취소'
+);
+
 -- '김예시' 예약 내역 확인
 SELECT * FROM reservations WHERE user_id = 1;
 

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
 import '../../assets/styles/reservationForm.css';
+import '../../assets/styles/reservationInfoCard.css';
 
 export default function ReservationForm({ exhibition }) {
     const navigate = useNavigate();
@@ -144,8 +145,11 @@ export default function ReservationForm({ exhibition }) {
                 />
             </div>
 
-            <div className="button-group">
-                <button type="submit" className="submit-button">
+            <div className="button-group" style={{ gap: 290 }}>
+                <button className="info-button" onClick={() => navigate(-1)}>
+                    돌아가기
+                </button>
+                <button type="submit" className="info-button">
                     예약하기
                 </button>
             </div>
