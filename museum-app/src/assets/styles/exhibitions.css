@@ -76,6 +76,7 @@
     background-color: rgb(50, 43, 43);
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 .exhibition-bottom-title {
     font-size: larger;
