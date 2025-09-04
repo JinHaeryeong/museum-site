@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from "react";
-import "../../assets/styles/main.css";
-import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, Play, Mic } from "lucide-react";
-import { ResizeObserver } from "@juggle/resize-observer";
-import { Link } from "react-router-dom";
-
-const carouselImgName = "carousel_img";
-const exhibitionImgName = "exhibition_img";
+import { useRef, useState, useEffect } from 'react';
+import '../../assets/styles/main.css';
+import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, Play, Mic } from 'lucide-react';
+import { ResizeObserver } from '@juggle/resize-observer';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+const carouselImgName = 'carousel_img';
+const exhibitionImgName = 'exhibition_img';
 const carouselImgs = [`${carouselImgName}1`, `${carouselImgName}2`, `${carouselImgName}3`, `${carouselImgName}4`];
 export default function HomeContent() {
     const navigate = useNavigate();
@@ -59,7 +59,7 @@ export default function HomeContent() {
     useEffect(() => {
         if (slideRef.current) {
             slideRef.current.style.transform = `translateX(${-size.current * counter}px)`;
-            slideRef.current.style.transition = "transform 0.4s ease-in-out";
+            slideRef.current.style.transition = 'transform 0.4s ease-in-out';
         }
     }, [counter]);
 
@@ -83,8 +83,8 @@ export default function HomeContent() {
     }, []);
     return (
         <div>
-            <div className='carousel'>
-                <div className='carousel-slides' ref={slideRef}>
+            <div className="carousel">
+                <div className="carousel-slides" ref={slideRef}>
                     {carouselImgs.map((image, index) => (
                         <img
                             key={image}
@@ -94,80 +94,80 @@ export default function HomeContent() {
                         />
                     ))}
                 </div>
-                <div className='carousel-button prev' onClick={handleCarouselPrev}>
+                <div className="carousel-button prev" onClick={handleCarouselPrev}>
                     <ArrowLeftCircleIcon size={42} />
                 </div>
-                <div className='carousel-button next' onClick={handleCarouselNext}>
+                <div className="carousel-button next" onClick={handleCarouselNext}>
                     <ArrowRightCircleIcon size={42} />
                 </div>
-                <div className='carousel-button stop' onClick={() => setAutoPlay(!autoPlay)}>
+                <div className="carousel-button stop" onClick={() => setAutoPlay(!autoPlay)}>
                     {autoPlay ? <Play /> : <Pause />}
                 </div>
-                <div className='carousel-nav'>
+                <div className="carousel-nav">
                     {carouselImgs.map((_, index) => (
-                        <div className={`carousel-nav-btn ${counter === index ? "currentSlide" : ""}`}></div>
+                        <div className={`carousel-nav-btn ${counter === index ? 'currentSlide' : ''}`}></div>
                     ))}
                 </div>
             </div>
-            <div className='main-info'>
-                <div className='main-info-left'>
-                    <ul className='main-info-content'>
-                        <li className='main-info-first'>
-                            <div className='main-info-first-icon'>
+            <div className="main-info">
+                <div className="main-info-left">
+                    <ul className="main-info-content">
+                        <li className="main-info-first">
+                            <div className="main-info-first-icon">
                                 <Clock />
                             </div>
                             <div>관람시간</div>
                         </li>
-                        <li className='main-info-think'>월/화/목/금/일</li>
-                        <li className='main-info-light'>10:00 ~ 18:00</li>
-                        <li className='main-info-think'>수/토</li>
-                        <li className='main-info-light'>10:00 ~ 21:00</li>
+                        <li className="main-info-think">월/화/목/금/일</li>
+                        <li className="main-info-light">10:00 ~ 18:00</li>
+                        <li className="main-info-think">수/토</li>
+                        <li className="main-info-light">10:00 ~ 21:00</li>
                         <li>* 입장 마감은 폐관 30분 전까지</li>
                     </ul>
-                    <ul className='main-info-content'>
-                        <li className='main-info-first'>
-                            <div className='main-info-first-icon'>
+                    <ul className="main-info-content">
+                        <li className="main-info-first">
+                            <div className="main-info-first-icon">
                                 <TicketsIcon />
                             </div>
                             <div>관람료</div>
                         </li>
-                        <li className='main-info-think'>무료</li>
-                        <li className='main-info-light'>특별 전시는 유료</li>
+                        <li className="main-info-think">무료</li>
+                        <li className="main-info-light">특별 전시는 유료</li>
                     </ul>
-                    <hr size='5' color='black' />
+                    <hr size="5" color="black" />
                 </div>
-                <div className='main-info-right'>
-                    <div className='main-info-right-item'>
-                        <Link to='/location'>
+                <div className="main-info-right">
+                    <div className="main-info-right-item">
+                        <Link to="/location">
                             <div>오시는길</div>
                         </Link>
-                        <hr size='5' color='black' />
+                        <hr size="5" color="black" />
                     </div>
-                    <div className='main-info-right-item'>
+                    <div className="main-info-right-item">
                         <div
                             onClick={() => {
-                                navigate("/exhibitions");
+                                navigate('/exhibitions');
                             }}
                         >
                             예약하기
                         </div>
-                        <hr size='5' color='black' />
+                        <hr size="5" color="black" />
                     </div>
                 </div>
             </div>
-            <div className='main-exhibition'>
+            <div className="main-exhibition">
                 <h1>전시</h1>
-                <div className='main-exhibition-content'>
-                    <ul className='main-exhibition-list'>
+                <div className="main-exhibition-content">
+                    <ul className="main-exhibition-list">
                         {Array(4)
                             .fill(0)
                             .map((_, index) => (
-                                <li className='main-exhibition-list-item' key={`exhibition_${index}`}>
-                                    <div className='main-exhibition-item-img-container'>
+                                <li className="main-exhibition-list-item" key={`exhibition_${index}`}>
+                                    <div className="main-exhibition-item-img-container">
                                         <img
-                                            className='main-exhibition-item-img'
+                                            className="main-exhibition-item-img"
                                             src={`/images/${exhibitionImgName + (index + 1)}${
-                                                index + 1 == 2 ? ".png" : ".jpg"
+                                                index + 1 == 2 ? '.png' : '.jpg'
                                             }`}
                                             alt={`${exhibitionImgName + (index + 1)}`}
                                         />
@@ -177,28 +177,28 @@ export default function HomeContent() {
                     </ul>
                 </div>
             </div>
-            <div className='main-attention'>
+            <div className="main-attention">
                 <h1>
                     알립니다
                     {/* <Mic size={30} /> */}
                 </h1>
-                <div className='main-attention-press'>
+                <div className="main-attention-press">
                     <ul>
                         <li>
-                            <a href='https://www.newsis.com/view/NISX20250902_0003311919'>
+                            <a href="https://www.newsis.com/view/NISX20250902_0003311919">
                                 뮷즈 '까치호랑이' 구하나요?…'박물관·미술관 박람회'서 日 100개 풀린다
                             </a>
                         </li>
                         <li>
-                            <a href='https://news.mt.co.kr/mtview.php?no=2025082709524536411'>
+                            <a href="https://news.mt.co.kr/mtview.php?no=2025082709524536411">
                                 "'단청 키보드' 대박 터졌다"…국립중앙박물관 '필수 굿즈' 외국인들 싹쓸이
                             </a>
                         </li>
                         <li>
-                            <a href='https://www.news1.kr/photos/7463601'>국립중앙박물관 '오픈런'</a>
+                            <a href="https://www.news1.kr/photos/7463601">국립중앙박물관 '오픈런'</a>
                         </li>
                         <li>
-                            <a href='국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대'>
+                            <a href="국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대">
                                 국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대
                             </a>
                         </li>
