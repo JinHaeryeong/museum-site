@@ -1,0 +1,87 @@
+.museum-info-container {
+    display: flex;
+}
+
+.display-visual {
+    width: 100%;
+}
+
+.display-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.info {
+    font-size: 30px;
+    width: 150%;
+    border-top: 3px solid #000000;
+    margin-top: 80px;
+}
+
+.display-content {
+    list-style: none;
+    display: flex;
+    border-bottom: 2px solid rgb(236, 236, 236);
+
+}
+
+li span {
+    font-size: 18px;
+}
+
+.display-li {
+    font-size: 25px;
+    margin-bottom: 30px;
+    width: 20%;
+    border-right: 3px solid #eee;
+    margin-right: 20px;
+}
+
+.str-display {
+    margin-block: 0;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.info-detail {
+    font-size: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+
+}
+
+.info-notice h4 {
+    margin-top: 100px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.display-side {
+    color: #333;
+}
+
+.display-side li {
+    font-size: 18px;
+    color: #333;
+    margin: 30px;
+}
+
+.free {
+    background-color: rgb(30, 30, 161);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 15px;
+    padding: 15px 20px;
+    margin-right: 15px;
+}
+
+span {
+    color: #333;
+}
+
+.display-content li .str-display+span {
+    display: block;
+    margin-bottom: 15px;
+}
