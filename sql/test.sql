@@ -79,12 +79,20 @@ select * from reservations;
 
 desc exhibitions;
 
--- exhibitions 컬럼 추가(보류)
--- ALTER TABLE exhibitions ADD period VARCHAR(30) NOT NULL;
--- ALTER TABLE exhibitions ADD location VARCHAR(50) NOT NULL;
+SELECT * FROM exhibitions;
 
--- insert into exhibitions(name, period, location) values("마나 모아나-신성한 바다의 예술, 오세아니아","2025-04-30~2025-09-14","국립중앙박물관 특별전시실2");
--- insert into exhibitions(name, period, location) values("국보순회전, 모두가 함께하는 180일의 여정");
--- insert into exhibitions(name, period, location) values("두 발로 세계를 제패하다");
--- insert into exhibitions(name, period, location) values("각角진 백자 이야기");
+ALTER TABLE exhibitions DROP column period;
+ALTER TABLE exhibitions DROP column location;
+
+
+ALTER TABLE exhibitions ADD startdate DATE NOT NULL;
+ALTER TABLE exhibitions ADD enddate DATE NOT NULL;
+ALTER TABLE exhibitions ADD location VARCHAR(50) NOT NULL;
+
+DELETE FROM exhibitions;
+ALTER TABLE exhibitions AUTO_INCREMENT = 1;
+insert into exhibitions(name, startdate, enddate, location) values("마나 모아나-신성한 바다의 예술, 오세아니아","2025-04-30","2025-09-14","국립중앙박물관 특별전시실2");
+insert into exhibitions(name, startdate, enddate, location) values("국보순회전, 모두가 함께하는 180일의 여정","2025-05-20","2025-12-07","고흥분청문화박물관 등 8개 지역 공립 박물관");
+insert into exhibitions(name, startdate, enddate, location) values("두 발로 세계를 제패하다","2025-07-25","2025-12-28","상설전시관 2층 기증1실");
+insert into exhibitions(name, startdate, enddate, location) values("각角진 백자 이야기","2025-05-20","2025-12-07","분청사기·백자실");
 

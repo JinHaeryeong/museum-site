@@ -9,6 +9,7 @@ const morgan = require("morgan");
 
 const userRouter = require("./src/routes/userRouter");
 const signRouter = require("./src/routes/signRouter");
+const exhibitionRouter = require("./src/routes/exhibitionRouter");
 const reservationRouter = require("./src/routes/reservationRouter");
 const port = process.env.PORT || 7777;
 
@@ -24,6 +25,7 @@ app.use(cors());
 app.use("/api/users", userRouter);
 app.use("/api/auth", signRouter);
 app.use("/api/reservations", reservationRouter);
+app.use("/api/exhibition", exhibitionRouter);
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}에서 서버가동중`);

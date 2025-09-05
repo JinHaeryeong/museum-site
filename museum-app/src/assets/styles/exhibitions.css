@@ -55,6 +55,7 @@
 }
 .exhibition-center-badge {
     padding: 5px 15px;
+    border-radius: 2px;
     background-color: rgb(115, 99, 150);
     color: white;
     margin-right: 5px;
@@ -66,6 +67,7 @@
 }
 .exhibition-bottom-location {
     min-height: 45px;
+    color: rgb(90, 94, 102);
 }
 .exhibition-item-btn {
     padding: 10px;
