@@ -1,6 +1,18 @@
 import { useRef, useState, useEffect } from "react";
 import "../../assets/styles/main.css";
-import { Clock, Pause, TicketsIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, Play, Mic } from "lucide-react";
+import {
+    Clock,
+    Pause,
+    TicketsIcon,
+    ArrowLeftCircleIcon,
+    ArrowRightCircleIcon,
+    Play,
+    CalendarCheck,
+    PlusSquareIcon,
+    PartyPopper,
+    SkipBack,
+    SkipForward,
+} from "lucide-react";
 import { ResizeObserver } from "@juggle/resize-observer";
 import { Link } from "react-router-dom";
 import FullCalendar from "@fullcalendar/react";
@@ -60,6 +72,10 @@ export default function HomeContent() {
         return;
     };
 
+    const handleCarouselSlide = (index) => {
+        setCounter(index);
+    };
+
     useEffect(() => {
         if (autoPlay) {
             stopAutoSlide();
@@ -107,17 +123,20 @@ export default function HomeContent() {
                     ))}
                 </div>
                 <div className='carousel-button prev' onClick={handleCarouselPrev}>
-                    <ArrowLeftCircleIcon size={42} />
+                    <SkipBack size={42} />
                 </div>
                 <div className='carousel-button next' onClick={handleCarouselNext}>
-                    <ArrowRightCircleIcon size={42} />
+                    <SkipForward size={42} />
                 </div>
                 <div className='carousel-button stop' onClick={() => setAutoPlay(!autoPlay)}>
                     {autoPlay ? <Play /> : <Pause />}
                 </div>
                 <div className='carousel-nav'>
                     {carouselImgs.map((_, index) => (
-                        <div className={`carousel-nav-btn ${counter === index ? "currentSlide" : ""}`}></div>
+                        <div
+                            className={`carousel-nav-btn ${counter === index ? "current-slide" : ""}`}
+                            onClick={() => handleCarouselSlide(index)}
+                        ></div>
                     ))}
                 </div>
             </div>
@@ -190,48 +209,77 @@ export default function HomeContent() {
                     <div className='main-attention-press'>
                         <h1>
                             알립니다
+                            <PartyPopper size={30} />
                             {/* <Mic size={30} /> */}
                         </h1>
                         <ul className='main-attention-list'>
                             <li className='main-attention-list-item'>
+                                <h3>관련 뉴스</h3>
+                            </li>
+                            <hr size={2} color='black' />
+                            <li className='main-attention-list-item'>
                                 <a href='https://www.newsis.com/view/NISX20250902_0003311919'>
                                     뮷즈 '까치호랑이' 구하나요?…'박물관·미술관 박람회'서 日 100개 풀린다
                                 </a>
+                                <div>2025.09.02</div>
                             </li>
                             <li className='main-attention-list-item'>
                                 <a href='https://news.mt.co.kr/mtview.php?no=2025082709524536411'>
                                     "'단청 키보드' 대박 터졌다"…국립중앙박물관 '필수 굿즈' 외국인들 싹쓸이
                                 </a>
+                                <div>2025.08.27</div>
                             </li>
                             <li className='main-attention-list-item'>
                                 <a href='https://www.news1.kr/photos/7463601'>국립중앙박물관 '오픈런'</a>
+                                <div>2025.08.27</div>
                             </li>
                             <li className='main-attention-list-item'>
-                                <a href='국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대'>
+                                <a href='https://www.yna.co.kr/view/AKR20250826067200005'>
                                     국립중앙박물관 올해 관람객, 역대 최다…500만명 돌파 기대
                                 </a>
+                                <div>2025.08.26</div>
                             </li>
                             <li className='main-attention-list-item'>
                                 <a href='https://search.naver.com/search.naver?ssc=tab.news.all&where=news&sm=tab_jum&query=%EA%B5%AD%EB%A6%BD%EC%A4%91%EC%95%99%EB%B0%95%EB%AC%BC%EA%B4%80'>
-                                    더보기 +
+                                    더보기 <PlusSquareIcon size={16} />
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <div className='main-schedules'>
-                        <h1>주요일정</h1>
-                        {exhibitions ? (
-                            <FullCalendar
-                                plugins={[dayGridPlugin]}
-                                initialView='dayGridMonth'
-                                events={exhibitions}
-                                eventColor='rgb(0, 0, 0)'
-                                displayEventTime={false}
-                            />
-                        ) : (
-                            "로딩중..."
-                        )}
+                    <div className='main-attention-imgs'>
+                        <div className='main-attention-left-img'>
+                            <img id='attention1' src='./images/attention_img1.jpg' alt='아하!발견과공감' />
+                        </div>
+
+                        <div className='main-attention-right-imgs'>
+                            <div>
+                                <img id='attention2' src='./images/attention_img2.jpg' alt='박물관' />
+                            </div>
+                            <div className='main-attnetion-right-img2'>
+                                <img id='attention3' src='./images/attention_img4.jpg' alt='제주' />
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div className='main-schedules'>
+                    <h1>
+                        주요일정 <CalendarCheck size={32} />
+                    </h1>
+                    {/* <div className='main-calendar-container'> */}
+                    {exhibitions ? (
+                        <FullCalendar
+                            className='calendar'
+                            plugins={[dayGridPlugin]}
+                            initialView='dayGridMonth'
+                            events={exhibitions}
+                            eventColor='rgb(0, 0, 0)'
+                            displayEventTime={false}
+                            locale='ko'
+                        />
+                    ) : (
+                        "로딩중..."
+                    )}
+                    {/* </div> */}
                 </div>
             </div>
         </div>

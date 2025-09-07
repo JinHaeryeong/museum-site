@@ -1,4 +1,4 @@
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 import { create } from "zustand";
 // authStore.js
 export const useAuthStore = create(

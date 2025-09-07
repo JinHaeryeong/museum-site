@@ -45,8 +45,11 @@ export default function ExhibitionList() {
         }
     }, [location.pathname]);
     const handleSearch = () => {
+        setSearchInput("");
+        setSearchIdx(-1);
         if (inputRef.current?.value.trim() === "") {
             alert("검색어를 입력하세요");
+            window.location.reload();
             return;
         }
         if (inputRef.current.value.length < 2) {
@@ -54,9 +57,9 @@ export default function ExhibitionList() {
             return;
         }
         // '두'라는 글자가 겹쳐서 디비에서 불러와서 map으로 할지 말지 고민중
+        setSearchInput(inputRef.current?.value);
         for (let i = 0; i < exhibitionsBottom.length; i++) {
             if (exhibitionsBottom[i].title.includes(inputRef.current?.value)) {
-                setSearchInput(inputRef.current?.value);
                 setSearchIdx(i);
                 return;
             }
@@ -128,6 +131,7 @@ export default function ExhibitionList() {
                             </div>
                         </div>
                     ))}
+
                 {searchInput !== null && searchIdx > -1 && (
                     <div className='exhibition-item'>
                         <img src={`/images/${exhibitionsImg[searchIdx]}`} alt={exhibitionsImg[searchIdx]} />
@@ -152,6 +156,7 @@ export default function ExhibitionList() {
                         </div>
                     </div>
                 )}
+                {searchInput !== "" && searchIdx === -1 && <div>'{searchInput}' 라는 이름의 전시는 없습니다</div>}
             </div>
         </div>
     );

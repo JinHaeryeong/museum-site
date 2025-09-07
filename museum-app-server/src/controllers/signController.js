@@ -66,7 +66,7 @@ exports.refreshVerify = async (req, res) => {
             return res.status(403).json({ result: "fail", message: "유효하지 않은 refreshToeken입니다" });
         }
         // 유효한 토큰일 경우 => members에서 refreshToken으로 회원정보 가져오기
-        const sql = `select id, name, email, role from users where refreshToken = ?`;
+        const sql = `select id, name, email, tel from users where refreshToken = ?`;
         try {
             const [result] = await pool.query(sql, [refreshToken]);
             if (result.length === 0) {
