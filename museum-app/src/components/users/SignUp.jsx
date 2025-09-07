@@ -17,7 +17,13 @@ export default function SignUp() {
     let telRef = useRef(null);
     const navigate = useNavigate();
     const handleChange = (e) => {
-        setSignUpInput({ ...signUpInput, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        if (name === "tel" && value.length > 11) {
+            const telValue = value.slice(0, 11);
+            setSignUpInput((prev) => ({ ...prev, [name]: telValue }));
+        } else {
+            setSignUpInput((prev) => ({ ...prev, [name]: value }));
+        }
     };
 
     const check = () => {
@@ -101,6 +107,7 @@ export default function SignUp() {
                         type='text'
                         name='name'
                         id='name'
+                        value={signUpInput.name}
                         placeholder='이름을 입력해주세요'
                         ref={nameRef}
                         onChange={handleChange}
@@ -112,6 +119,7 @@ export default function SignUp() {
                         type='email'
                         name='email'
                         id='tel'
+                        value={signUpInput.email}
                         placeholder='이메일을 입력해주세요'
                         ref={emailRef}
                         onChange={handleChange}
@@ -123,6 +131,7 @@ export default function SignUp() {
                         type='password'
                         name='pwd'
                         id='pwd'
+                        value={signUpInput.pwd}
                         placeholder='비밀번호를 입력해주세요'
                         ref={passwdRef}
                         onChange={handleChange}
@@ -134,6 +143,7 @@ export default function SignUp() {
                         type='password'
                         name='pwdCheck'
                         id='pwdCheck'
+                        value={signUpInput.pwdCheck}
                         placeholder='입력한 비밀번호를 다시 입력해주세요'
                         ref={passwdCheckRef}
                         onChange={handleChange}
@@ -145,6 +155,7 @@ export default function SignUp() {
                         type='number'
                         name='tel'
                         id='tel'
+                        value={signUpInput.tel}
                         placeholder='전화번호를 - 없이 입력해주세요'
                         ref={telRef}
                         onChange={handleChange}

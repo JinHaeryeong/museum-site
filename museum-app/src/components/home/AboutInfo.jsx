@@ -1,60 +1,60 @@
-import React from 'react';
+import React from "react";
 
 export default function AboutInfo() {
     const styles = {
         wrapper: {
-            maxWidth: '1200px',
-            margin: '40px auto',
-            padding: '40px',
+            maxWidth: "1200px",
+            margin: "40px auto",
+            padding: "40px",
         },
         header: {
-            fontSize: '24px',
-            fontWeight: '600',
-            marginBottom: '24px',
+            fontSize: "24px",
+            fontWeight: "600",
+            marginBottom: "24px",
             lineHeight: 1.5,
-            textAlign: 'center',
+            textAlign: "center",
         },
         highlight: {
-            fontWeight: '800',
-            color: '#222',
+            fontWeight: "800",
+            color: "#222",
         },
         layout: {
-            display: 'grid',
-            gridTemplateColumns: '1fr 1.2fr',
-            gap: '40px',
-            alignItems: 'flex-start',
+            display: "grid",
+            gridTemplateColumns: "1fr 1.2fr",
+            gap: "40px",
+            alignItems: "flex-start",
         },
         image: {
-            width: '100%',
-            maxWidth: '100%',
-            borderRadius: '8px',
-            objectFit: 'cover',
+            width: "100%",
+            maxWidth: "100%",
+            borderRadius: "8px",
+            objectFit: "cover",
         },
         text: {
-            fontSize: '16px',
+            fontSize: "16px",
             lineHeight: 1.75,
-            color: '#333',
+            color: "#333",
         },
         title: {
-            fontSize: '18px',
-            fontWeight: '700',
-            marginBottom: '8px',
+            fontSize: "18px",
+            fontWeight: "700",
+            marginBottom: "8px",
         },
         thanks: {
-            fontWeight: 'bold',
-            marginTop: '24px',
+            fontWeight: "bold",
+            marginTop: "24px",
         },
     };
 
     return (
         <div style={styles.wrapper}>
             <div style={styles.header}>
-                역사와 문화가 살아 숨쉬고, 과거와 현재, 미래가 공존하는 감동의 공간인{' '}
+                역사와 문화가 살아 숨쉬고, 과거와 현재, 미래가 공존하는 감동의 공간인{" "}
                 <span style={styles.highlight}>국립중앙박물관</span>에 오신 것을 환영합니다.
             </div>
 
             <div style={styles.layout}>
-                <img src="../public/images/aboutinfo_director.jpg" alt="국립중앙박물관장" style={styles.image} />
+                <img src='/images/aboutinfo_director.jpg' alt='국립중앙박물관장' style={styles.image} />
 
                 <div style={styles.text}>
                     <div style={styles.title}>안녕하십니까? 국립중앙박물관장 유홍준입니다.</div>
