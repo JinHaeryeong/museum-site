@@ -2,6 +2,7 @@
 <p align="center">
 <img width="187" height="49" alt="logo" src="https://github.com/user-attachments/assets/c69a166d-ce0e-4040-a376-5b99e79b11cf"/>
 </p>
+
 > React, Node.js와 MySQL을 활용한 간단한 박물관 소개 및 예약 사이트
 
 
