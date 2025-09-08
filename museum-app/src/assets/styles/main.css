@@ -79,11 +79,12 @@
 .main-info-right {
     width: 20%;
     display: flex;
-    font-size: xx-large;
+    font-size: 1.6rem;
     font-weight: 600;
     box-sizing: border-box;
     align-items: end;
 }
+
 .main-info-right > div {
     margin-right: 5px;
     width: 50%;
