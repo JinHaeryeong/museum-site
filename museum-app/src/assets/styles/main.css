@@ -282,6 +282,9 @@
     background-color: transparent;
     border: none;
 }
+.fc .fc-button .fc-icon {
+    color: white;
+}
 
 .fc .fc-today-button:disabled {
     background-color: var(--subColor1);
