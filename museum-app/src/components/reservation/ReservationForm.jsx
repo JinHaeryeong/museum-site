@@ -119,7 +119,8 @@ export default function ReservationForm({ exhibition }) {
                     name="date"
                     value={form.date}
                     onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    min={minDate}
+                    min={exhibition.startdate}
+                    max={exhibition.enddate}
                 />
             </div>
 
